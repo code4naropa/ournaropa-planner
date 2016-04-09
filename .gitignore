@@ -8,4 +8,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 
 # Ignore application configuration
-/config/application.yml
+spec/dummy/config/application.yml
