@@ -15,6 +15,9 @@ gemspec
 
 gem 'pry-rails', group: [:development, :test]
 
+# allows us to open websites locally
+gem 'launchy', group: [:development]
+
 
 group :test do
   gem 'shoulda-matchers', '~> 3.0', require: false
