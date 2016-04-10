@@ -1,4 +1,7 @@
 OurnaropaPlanner::Engine.routes.draw do
-  get 'scraper/scrape'
+  
+  get 'scraper/scrape', as: :scrape
 
+  get 'courses', to: 'courses#index'
+  
 end

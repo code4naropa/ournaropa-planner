@@ -1,0 +1,134 @@
+<!DOCTYPE html><html><head>
+        <title>'', hexadecimal value 0x1C, is an invalid character. Line 51, position 669.</title>
+        <meta name="viewport" content="width=device-width">
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:hand; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><h1>Server Error in '/ICS' Application.<hr width="100%" size="1" color="silver"></h1>
+
+            <h2> <i>'', hexadecimal value 0x1C, is an invalid character. Line 51, position 669.</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Description: </b>An unhandled exception occurred during the execution of the current web request. Please review the stack trace for more information about the error and where it originated in the code.
+
+            <br><br>
+
+            <b> Exception Details: </b>System.Xml.XmlException: '', hexadecimal value 0x1C, is an invalid character. Line 51, position 669.<br><br>
+
+            <b>Source Error:</b> <br><br>
+
+            <table width="100%" bgcolor="#ffffcc">
+               <tbody><tr>
+                  <td>
+                      <code>
+
+An unhandled exception was generated during the execution of the current web request. Information regarding the origin and location of the exception can be identified using the exception stack trace below.</code>
+
+                  </td>
+               </tr>
+            </tbody></table>
+
+            <br>
+
+            <b>Stack Trace:</b> <br><br>
+
+            <table width="100%" bgcolor="#ffffcc">
+               <tbody><tr>
+                  <td>
+                      <code><pre>
+[XmlException: '', hexadecimal value 0x1C, is an invalid character. Line 51, position 669.]
+   System.Xml.XmlTextReaderImpl.Throw(String res, String[] args) +163
+   System.Xml.XmlTextReaderImpl.ParseText(Int32&amp; startPos, Int32&amp; endPos, Int32&amp; outOrChars) +7452735
+   System.Xml.XmlTextReaderImpl.ParseText() +109
+   System.Xml.XmlTextReaderImpl.ParseElementContent() +365
+   System.Xml.XmlReader.ReadElementString() +87
+   Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read8_CourseListCourseInfo(Boolean isNullable, Boolean checkType) +14939
+   Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read9_CourseList(Boolean isNullable, Boolean checkType) +795
+   Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read10_CourseList() +153
+
+[InvalidOperationException: There is an error in XML document (51, 669).]
+   System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events) +1363
+   System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle) +163
+   Jenzabar.CRM.Utility.PlugIn.MapXMLToObject(Stream inStream, XmlSerializer serializer) +161
+   Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.CourseDetails.ReadCourseDetails() +748
+   Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.CourseDetails.Page_Load(Object sender, EventArgs e) +168
+   Jenzabar.Portal.Framework.Web.UI.PortletViewBase.OnLoad(EventArgs e) +980
+   System.Web.UI.Control.LoadRecursive() +71
+   System.Web.UI.Control.AddedControl(Control control, Int32 index) +257
+   Jenzabar.Portal.Framework.Web.UI.PortletBase.NextScreen(String newScreen, Hashtable screenState) +664
+   Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.SearchResults.dgCourses_ItemCommand(Object source, DataGridCommandEventArgs e) +1052
+   System.Web.UI.WebControls.DataGrid.OnBubbleEvent(Object source, EventArgs e) +66
+   System.Web.UI.WebControls.DataGridItem.OnBubbleEvent(Object source, EventArgs e) +164
+   System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args) +84
+   System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint) +3804
+</pre></code>
+
+                  </td>
+               </tr>
+            </tbody></table>
+
+            <br>
+
+            <hr width="100%" size="1" color="silver">
+
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.0.30319.34280
+
+            </font>
+
+    
+
+<!-- 
+[XmlException]: &#39;&#39;, hexadecimal value 0x1C, is an invalid character. Line 51, position 669.
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String[] args)
+   at System.Xml.XmlTextReaderImpl.ParseText(Int32& startPos, Int32& endPos, Int32& outOrChars)
+   at System.Xml.XmlTextReaderImpl.ParseText()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.XmlReader.ReadElementString()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read8_CourseListCourseInfo(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read9_CourseList(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderCourseList.Read10_CourseList()
+[InvalidOperationException]: There is an error in XML document (51, 669).
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at Jenzabar.CRM.Utility.PlugIn.MapXMLToObject(Stream inStream, XmlSerializer serializer)
+   at Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.CourseDetails.ReadCourseDetails()
+   at Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.CourseDetails.Page_Load(Object sender, EventArgs e)
+   at Jenzabar.Portal.Framework.Web.UI.PortletViewBase.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Control.AddedControl(Control control, Int32 index)
+   at Jenzabar.Portal.Framework.Web.UI.PortletBase.NextScreen(String newScreen, Hashtable screenState)
+   at Jenzabar.CRM.Student.Web.Portlets.CourseSchedulesPortlet.SearchResults.dgCourses_ItemCommand(Object source, DataGridCommandEventArgs e)
+   at System.Web.UI.WebControls.DataGrid.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.WebControls.DataGridItem.OnBubbleEvent(Object source, EventArgs e)
+   at System.Web.UI.Control.RaiseBubbleEvent(Object source, EventArgs args)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+[HttpUnhandledException]: Exception of type &#39;System.Web.HttpUnhandledException&#39; was thrown.
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--><!-- 
+This error page might contain sensitive information because ASP.NET is configured to show verbose error messages using &lt;customErrors mode="Off"/&gt;. Consider using &lt;customErrors mode="On"/&gt; or &lt;customErrors mode="RemoteOnly"/&gt; in production environments.--></body></html>

@@ -1,0 +1,9 @@
+<% @courses.each do |course| %>
+
+<h1><%= course.code %> <%= course.name %></h1>
+<p>Instructor: <%= course.instructor %></p>
+<p>Credits: <%= course.credits %></p>
+<p>Description: <%= course.description.present? ? course.description : "No description." %></p>
+<p>Requirements: <%= course.requirements.present? ? ("<ul><li>" + course.requirements.gsub("\n", "</li><li>") + "</li></ul>").html_safe : "No requirements." %></ul></p>
+<hr>
+<% end %>

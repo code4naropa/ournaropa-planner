@@ -15,8 +15,10 @@ gemspec
 
 gem 'pry-rails', group: [:development, :test]
 
-# allows us to open websites locally
-gem 'launchy', group: [:development]
+group :development do
+  gem 'launchy' # allows us to open websites locally
+  gem 'puma'
+end
 
 
 group :test do
