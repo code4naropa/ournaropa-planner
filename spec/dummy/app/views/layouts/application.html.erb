@@ -8,7 +8,27 @@
 </head>
 <body>
 
+ <nav>
+  <div class="nav-wrapper">
+    <div class="container">
+      <%= link_to "OurNaropa", "#", :class => "brand-logo" %>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="<%= params[:controller].start_with?("ournaropa_library") ? "active" : "" %>"><%= link_to "Library", "#" %></li>
+        <li class="<%= params[:controller].start_with?("ournaropa_calendar") ? "active" : "" %>"><%= link_to "Calendar", "#" %></li>
+        <li class="<%= params[:controller].start_with?("ournaropa_planner") ? "active" : "" %>"><%= link_to "Planner", main_app.planner_path %></li>
+      </ul>
+    </div>
+  </div>
+</nav>  
+
 <%= yield %>
 
+<% # if there is a notice, display for 5 seconds
+  if notice %>
+  <script type="text/javascript">
+    Materialize.toast("<%= escape_javascript notice %>", 5000) // 4000 is the duration of the toast
+  </script>
+<% end %>
+  
 </body>
 </html>

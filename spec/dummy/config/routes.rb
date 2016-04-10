@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount OurnaropaPlanner::Engine => "/planner"
+  mount OurnaropaPlanner::Engine => "/ournaropa_planner", as: :planner
 end
