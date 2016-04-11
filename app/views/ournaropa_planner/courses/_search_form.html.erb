@@ -2,17 +2,17 @@
 
   <div class="row title">
     <h1 class="center-align">OurNaropa Course Planner</h1>
-    <p class="center-align">Search Naropa Courses for Fall 2016.</p>
+    <p class="center-align">Search through the 427 courses offered in Fall 2016 and plan ahead for next semester.</p>
   </div>
 
   <div class="row remove-margins">
 
-    <div class="input-field col s4 l3">
+    <div class="input-field col s12 m3 l3">
       <%= select_tag "filter", options_for_select(["Everything", "Title", "Instructor", "Description", "Course Code"], @filter) %>
       <label>What are you searching for?</label>
     </div>
 
-    <div class="input-field col s12 l7">
+    <div class="input-field col s11 m8 l7">
       <i class="material-icons prefix">search</i>
       <%= text_field_tag(:query, @query, :class => "validate", :type => "text") %>
       <%= label_tag :query, "Type the search term..." %>
