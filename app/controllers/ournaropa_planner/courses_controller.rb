@@ -25,7 +25,7 @@ module OurnaropaPlanner
         search_fields.push(:instructor)
       when "Description".downcase
         search_fields.push(:description)
-      when "Code".downcase
+      when "Course Code".downcase
         search_fields.push(:code)
       else
         search_fields.push(:name)
