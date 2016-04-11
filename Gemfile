@@ -13,6 +13,22 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'jquery'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# Fix turbolinks issues
+gem 'jquery-turbolinks'
+
+gem 'sass-rails'
+
+gem 'material_icons'
+
+# Materialize
+gem 'materialize-sass'
+
+
 gem 'pry-rails', group: [:development, :test]
 
 group :development do

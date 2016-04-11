@@ -1,0 +1,115 @@
+#ournaropa_planner_courses {
+    
+  
+  &.index, &.search {
+    
+    .row.remove-margins {
+      margin-bottom: 0px;
+    }
+    
+    // give valign wrapper extra height for vertical centering
+    .valign-wrapper {
+      height: 500px;
+      transition: all 1s ease-out;
+    } 
+
+  }
+  
+  // HEADER
+  div.collapsible-header {
+    padding: 1rem;
+    
+    highlight {
+      background-color: color("teal", "lighten-5");
+    }
+    
+    // eliminate margin top to remove spacing between classes
+    h5 {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    
+    // course title on same line as badge
+    .course-title {
+      position: relative;
+      top: 3px;
+    }
+    
+    // custom badge style: course codes
+    .custom-badge {
+      min-width: 3rem;
+      text-align: center;
+      font-size: 1rem;
+      line-height: inherit;
+      box-sizing: border-box;
+      background-color: #77057e;
+      position: unset;
+      border-radius: 5px;
+      padding: 3px 8px;
+      color: white;
+      
+      highlight {
+        color: color("grey", "darken-4");
+      }
+    }
+    
+    // single spaced
+    .course-description {
+      line-height: normal;
+      color: color("grey", "darken-1");
+      transition: all .3s linear;
+    }
+    
+    &.active .course-description {
+      color: color("grey", "darken-4");
+    }
+    
+    // course info
+    .course-info {
+      line-height: normal;
+      
+      // add some spacing between wrappers
+      span.wrapper:not(:first-of-type) {
+        margin-left: 20px;
+      }
+      
+      // fix icon styles
+      i {
+        float: none;
+        margin:0px;
+        padding:0px;
+        display: inline;
+      }
+      
+      // aligns icon and text
+      span.content {
+        position: relative;
+        top: -5px;
+      }
+    }
+    
+  }
+  
+  // BODY
+  div.collapsible-body {
+    padding: 1rem;
+    
+    p {
+      padding: 5px;
+    }
+    
+    ul.list {
+      padding-left: 40px;
+      
+      li.list-item {
+        list-style-type: circle;
+      }
+      
+    }
+    
+  }
+  
+  
+  
+
+}

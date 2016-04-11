@@ -1,0 +1,97 @@
+<div id="ournaropa_planner_courses" class="search container">
+
+  <div class="row remove-margins">
+    <div class="valign-wrapper">
+      
+      <%= render "search_form" %>
+      
+    </div>
+  </div>  
+  
+  <div id="search-results" style="display:none;" >
+    <% if @courses.count == 0 %>
+
+      <h3 class="center-align">No results found.</h3>
+
+    <% else %>
+
+      <h4>Showing <%= pluralize(@courses.count, "course") %></h4>
+    
+      <ul class="collapsible popout" data-collapsible="accordion">
+      <% @courses.with_details.each do |course, details| %>
+        <li>
+          <div class="collapsible-header">
+            <h5>
+              <span class="custom-badge"><%= (details[:highlight].present? and details[:highlight][:code].present?) ? (sanitize details[:highlight][:code], tags: %w(highlight)).html_safe : course.code %></span>
+              <span class="course-title"><%= (details[:highlight].present? and details[:highlight][:name].present?) ? ((sanitize details[:highlight][:name], tags: %w(highlight)).html_safe) : course.name %></span>
+              <div class="chip">
+                <!--<img src="images/yuna.jpg" alt="Contact Person">-->
+                <%= (details[:highlight].present? and details[:highlight][:instructor].present?) ? ((sanitize details[:highlight][:instructor], tags: %w(highlight)).html_safe) : course.instructor %>
+              </div>
+            </h5>
+            <div class="course-info">
+              <span class="wrapper tooltipped" data-position="bottom" data-delay="0" data-tooltip="Class Times"><i class="material-icons">schedule</i><span class="content"> <%= course.meeting_datetime %></span></span>
+              <span class="wrapper tooltipped" data-position="bottom" data-delay="0" data-tooltip="Location"><i class="material-icons">place</i><span class="content"> <%= course.meeting_location %></span></span>
+              <span class="wrapper tooltipped" data-position="bottom" data-delay="0" data-tooltip="Course Credits"><i class="material-icons">grade</i><span class="content"> <%= course.credits %></span></span>
+              <span class="wrapper tooltipped" data-position="bottom" data-delay="0" data-tooltip="Enrollment Status (+ Waitlist)"><i class="material-icons">person</i><span class="content"> <%= course.enrollment_status %></span></span>
+            </div>
+            <div class="course-description">
+              <% if course.description.present? %>
+                <%= (details[:highlight].present? and details[:highlight][:description].present?) ? ((sanitize details[:highlight][:description], tags: %w(highlight)).html_safe) : course.description %>
+              <% else %>
+                No description
+              <% end %>
+            </div>
+          </div>
+          <div class="collapsible-body">
+            <% if course.start_date != Time.new(2016, 8, 22, 0, 0, 0, "+00:00") or course.end_date != Time.new(2016, 12, 9, 0, 0, 0, "+00:00") %>
+              <p><i class="material-icons">event</i> Course Dates: <%= course.start_date.strftime("%-d %b") + " - " + course.end_date.strftime("%-d %b") %></p>
+            <% end %>
+            <% if course.meeting_times.count > 1 %>
+              <p><i class="material-icons">schedule</i> Meeting Times:<br/>
+                <ul class="list">
+                <% course.meeting_times.each do |meeting| %>
+                  <li class="list-item"><%= meeting[:datetime] + " @ " + meeting[:location] %></li>
+                <% end %>
+                </ul>
+              </p>
+            <% end %>
+            <p><i class="material-icons">message</i> <%= course.note.present? ? course.note : "No notes." %></p>
+            <p><i class="material-icons">error_outline</i> Requisites: <%= course.requirements.present? ? ("<ul class=\"list\"><li class=\"list-item\">" + course.requirements.gsub("\n", "</li><li class=\"list-item\">") + "</li></ul>").html_safe : "No requirements." %></p>
+            <% if course.books.present? %>
+              <p><i class="material-icons">library_books</i> Books: 
+                <ul class="list">
+                  <% course.books.each do |book| %>
+                    <li class="list-item">
+                      <%= (print_book book).html_safe%>
+                    </li>
+                  <% end %>
+                </ul>
+              </p>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+
+      </ul>
+
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  
+  window.setTimeout(function() {
+    $("div.valign-wrapper div.title").slideUp();
+  }, 300);
+
+
+  window.setTimeout(function() {
+    $("div.valign-wrapper").height($("div.valign-wrapper > form").height()+50);
+  }, 1000);
+  
+  window.setTimeout(function() {
+    $("#search-results").show(0);
+  }, 2000);  
+</script>

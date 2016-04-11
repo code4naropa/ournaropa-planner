@@ -4,4 +4,8 @@ OurnaropaPlanner::Engine.routes.draw do
 
   get 'courses', to: 'courses#index'
   
+  get 'search', to: 'courses#search', as: :search
+  
+  root 'courses#index'
+  
 end

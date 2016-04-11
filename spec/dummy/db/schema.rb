@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409213627) do
+ActiveRecord::Schema.define(version: 20160410220928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20160409213627) do
     t.integer  "enrollment_current"
     t.integer  "enrollment_maximum"
     t.integer  "enrollment_waitlist"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "ournaropa_planner_courses", ["code"], name: "index_ournaropa_planner_courses_on_code", using: :btree

@@ -3,6 +3,9 @@ require_dependency "ournaropa_planner/application_controller"
 module OurnaropaPlanner
   class ScraperController < ApplicationController
 
+    # inherit the layout from the main application
+    layout 'application'      
+    
     # Require the gems
     require 'capybara/poltergeist'    
     
@@ -14,7 +17,7 @@ module OurnaropaPlanner
       puts "Scraping process initiated..."
       
       # determines if we're doing a surface fetch or a full fetch of description, books, etc ...
-      @do_full_fetch = params[:full_fetch]
+      @do_full_fetch = params[:full_fetch] == "true" || false
       
       puts (@do_full_fetch ? "Full" : "Quick") + " fetch requested."
       
@@ -107,13 +110,34 @@ module OurnaropaPlanner
         course_info[:instructor] = scraped_data[6].text
         course_info[:enrollment_current] = scraped_data[7].text.split("/")[0].to_i
         course_info[:enrollment_maximum] = scraped_data[7].text.split("/")[1].to_i
-        course_info[:enrollment_waitlist] = scraped_data[7].text.split("/")[1].to_i
-        course_info[:credits] = scraped_data[11].text.to_f
-
+        course_info[:enrollment_waitlist] = scraped_data[8].text.split("/")[0].to_i
+        course_info[:books] = []          
+        
         # FULL FETCH METHODS
         if @do_full_fetch
+          
+          # scrape amount of credits
+          course_info[:credits] = scraped_data[11].text.to_f
+          
+          # scrape times and scrape location
+          course_info[:meeting_times] = []
+          scraped_data[10].all("ul li").each do |time|
 
-          # look for text books
+            meeting = {}
+
+            meeting[:datetime] = time.text.split(";")[0].strip
+            meeting[:location] = time.text.split(";")[1].strip
+
+            course_info[:meeting_times].push(meeting)
+          end
+
+          # scrape start date and end date
+          course_info[:start_date] = DateTime.strptime(scraped_data[12].text, "%m/%d/%Y")
+          course_info[:end_date] =DateTime.strptime(scraped_data[13].text, "%m/%d/%Y")
+          
+          # check if we have books
+          scrape_textbooks scraped_data, course_info, false
+          
 
           # open course
           @browser.click_link(course.find('a').text)
@@ -169,6 +193,54 @@ module OurnaropaPlanner
       end
     end
     
+    # scrapes textbooks and can close textbooks if needed
+    def scrape_textbooks scraped_data, course_info, force_close
+      if scraped_data[1].has_css?("img")
+
+        # open books
+        scraped_data[1].find("img").click
+
+        books = @browser.all("#pg0_V_dgCourses > tbody > tr.subItem")[0].all("tbody.gbody > tr")
+
+        for i in 0..books.count/2-1 do
+          book = {:title => "", :author => "", :publisher => "", :copyright => "", :description => ""}
+
+          bookMain = books[i*2]
+          bookInfo = books[i*2+1]
+
+          book[:title] = bookMain.all("td")[0].text
+
+          # if we have book info, then fill it in
+          if bookInfo.text.present?
+            
+            # get the author
+            book[:author] = bookInfo.all("table tbody tr")[0].all("td")[0].text.sub("Author(s):", "").strip
+            
+            # get publisher (+copyright), if exists
+            if bookInfo.all("table tbody tr").count > 1
+              
+              # if we have two tds in this row, we have copyright and then publisher
+              if bookInfo.all("table tbody tr")[1].all("td").count == 2
+                book[:copyright] = bookInfo.all("table tbody tr")[1].all("td")[0].text.sub("Copyright:", "").strip
+                book[:publisher] = bookInfo.all("table tbody tr")[1].all("td")[1].text.sub("Publisher:", "").strip
+              else #otherwise it's just publisher
+                book[:publisher] = bookInfo.all("table tbody tr")[1].all("td")[0].text.sub("Publisher:", "").strip
+              end
+            end
+            
+            # get the description if one exists
+            book[:description] = bookInfo.all("table tbody tr")[2].all("td")[0].text.sub("Description:", "").strip unless bookInfo.all("table tbody tr").count < 3
+          end
+
+          course_info[:books].push(book)
+        end
+
+        # close books
+        scraped_data[1].find("img").click unless not force_close
+
+      end
+    end
+    
     # creates or updates a course as passed by course params
     def create_or_update_course course
 
@@ -202,7 +274,7 @@ module OurnaropaPlanner
     end
     
     def restart_operations exception
-      binding.pry
+      #binding.pry
       
       puts "Encountered error: #{exception.message}"
       puts "But no worries! We'll be right back up..."
