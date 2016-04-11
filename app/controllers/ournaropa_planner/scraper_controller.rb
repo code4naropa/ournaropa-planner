@@ -19,6 +19,8 @@ module OurnaropaPlanner
       # determines if we're doing a surface fetch or a full fetch of description, books, etc ...
       @do_full_fetch = params[:full_fetch] == "true" || false
       
+      @scrape_books = params[:scrape_books] == "true" || false
+      
       puts (@do_full_fetch ? "Full" : "Quick") + " fetch requested."
       
       @num_classes_scraped = params[:courses_scraped].to_i || 0
@@ -110,8 +112,14 @@ module OurnaropaPlanner
         course_info[:instructor] = scraped_data[6].text
         course_info[:enrollment_current] = scraped_data[7].text.split("/")[0].to_i
         course_info[:enrollment_maximum] = scraped_data[7].text.split("/")[1].to_i
-        course_info[:enrollment_waitlist] = scraped_data[8].text.split("/")[0].to_i
-        course_info[:books] = []          
+        course_info[:enrollment_waitlist] = scraped_data[8].text.split("/")[0].to_i         
+        
+        
+        # check if we have books
+        if @scrape_books
+          course_info[:books] = [] 
+          scrape_textbooks scraped_data, course_info, true
+        end
         
         # FULL FETCH METHODS
         if @do_full_fetch
@@ -136,6 +144,7 @@ module OurnaropaPlanner
           course_info[:end_date] =DateTime.strptime(scraped_data[13].text, "%m/%d/%Y")
           
           # check if we have books
+          course_info[:books] = [] 
           scrape_textbooks scraped_data, course_info, false
           
 
