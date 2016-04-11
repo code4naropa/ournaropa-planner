@@ -1,10 +1,12 @@
 PATH
   remote: .
   specs:
-    ournaropa_planner (0.0.1)
+    ournaropa_planner (0.9.1)
+      capybara
       jquery-rails
       material_icons
       materialize-sass
+      poltergeist
       rails (~> 4.2.6)
       sass-rails
       searchkick
@@ -219,7 +221,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara
   database_cleaner (~> 1.5)
   factory_girl_rails
   faker
@@ -231,7 +232,6 @@ DEPENDENCIES
   materialize-sass
   ournaropa_planner!
   pg
-  poltergeist
   pry-rails
   puma
   rspec-rails
