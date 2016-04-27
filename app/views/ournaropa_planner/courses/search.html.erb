@@ -45,7 +45,7 @@
           </div>
           <div class="collapsible-body">
             <% if course.start_date != Time.new(2016, 8, 22, 0, 0, 0, "+00:00") or course.end_date != Time.new(2016, 12, 9, 0, 0, 0, "+00:00") %>
-              <p><i class="material-icons">event</i> Course Dates: <%= course.start_date.strftime("%-d %b") + " - " + course.end_date.strftime("%-d %b") %></p>
+              <p><i class="material-icons">event</i> Course Dates: <%= (course.start_date.nil? ? "not indicated" : course.start_date.strftime("%-d %b")) + " - " + (course.end_date.nil? ? "not indicated" : course.end_date.strftime("%-d %b")) %></p>
             <% end %>
             <% if course.meeting_times.count > 1 %>
               <p><i class="material-icons">schedule</i> Meeting Times:<br/>
