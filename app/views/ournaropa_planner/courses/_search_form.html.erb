@@ -8,7 +8,9 @@
   <div class="row remove-margins">
 
     <div class="input-field col s12 m3 l3">
-      <%= select_tag "filter", options_for_select(["Everything", "Title", "Instructor", "Description", "Course Code"], @filter) %>
+      <%# disabled for privacy reasons %>
+      <%#= select_tag "filter", options_for_select(["Everything", "Title", "Instructor", "Description", "Course Code"], @filter) %>
+      <%= select_tag "filter", options_for_select(["Everything", "Title", "Description", "Course Code"], @filter) %>
       <label>What are you searching for?</label>
     </div>
 

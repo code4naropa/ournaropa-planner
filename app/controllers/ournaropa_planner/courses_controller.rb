@@ -21,21 +21,23 @@ module OurnaropaPlanner
       case @filter.downcase
       when "Title".downcase
         search_fields.push(:name)
-      when "Instructor".downcase
-        search_fields.push(:instructor)
+      #when "Instructor".downcase
+      #  search_fields.push(:instructor)
       when "Description".downcase
         search_fields.push(:description)
       when "Course Code".downcase
         search_fields.push(:code)
       else
         search_fields.push(:name)
-        search_fields.push(:instructor)
+      # search_fields.push(:instructor)
         search_fields.push(:description)
         search_fields.push(:code)
       end
       
       
       @courses = Course.search @query, order: {_score: :desc, code: :asc}, fields: search_fields, match: :word_middle, highlight: {tag: "<highlight>", fragment_size: 10000}, misspellings: false
+      
+      render :search_filtered
       
     end
     
